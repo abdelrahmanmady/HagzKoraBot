@@ -1,1 +1,1 @@
-web:python HagzKoraBot.py
+worker:python HagzKoraBot.py

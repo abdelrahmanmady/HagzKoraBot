@@ -85,5 +85,4 @@ disp.add_handler(telegram.ext.CommandHandler("tashkela",tashkela))
 
 
 updater.start_polling()
-updater.idle()
 

@@ -11,9 +11,10 @@ def playersPrint() :
     for player in players :
         result=result+str(count)+"- "+str(player)+"\n"
         count += 1
-    if result == "":
-        result="Mfeesh Tashkela !"
-    return result
+    if len(result) :
+        return result
+    else :
+        return "Mafeesh Tashkela !"
 
 def is_admin(update,context):
     chat_id = str(update.message.chat.id)

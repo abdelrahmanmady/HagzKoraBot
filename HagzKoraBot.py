@@ -1,9 +1,25 @@
 import telegram.ext
+import os.path
 
 
 updater = telegram.ext.Updater("5523585310:AAHWeQbTTd4hKkI9V-xdEq7z7oly9VooaPw",use_context=True)
 disp = updater.dispatcher
 players=[]
+file = open(os.path.join(os.path.dirname(__file__), 'Players.txt'),"w")
+file.close()
+
+def updateFile() :
+    file = open(os.path.join(os.path.dirname(__file__), 'Players.txt'),"w")
+    str = ','.join(players)
+    file.write(str)
+    file.close()
+
+
+def updatePlayers():
+    f = open(os.path.join(os.path.dirname(__file__), 'Players.txt'), 'r')
+    if f.mode=='r':
+        contents= f.read()
+        players=contents.split(",")
 
 def playersPrint() :
     count=1
@@ -29,11 +45,13 @@ def is_admin(update,context):
 
 
 def start(update,context):
+    updatePlayers()
     update.message.reply_text("HagzKoraBot is Operating !")
 
 def restart(update,context):
     if is_admin(update,context):
         players.clear()
+        updateFile()
         update.message.reply_text("HagzKoraBot Restarted.")
     else:
         update.message.reply_text("Batal le3b ya hamada")
@@ -50,11 +68,13 @@ def help(update,context):
 
 def gai(update,context):
     member_name = update.message.from_user.full_name
+    updatePlayers()
     if len(players) <= 14 :
        if member_name in players :
             update.message.reply_text("Esmak fel tashkela aslan !")
        else :
            players.append(member_name)
+           updateFile()
            update.message.reply_text(playersPrint())
     else:
 
@@ -63,15 +83,18 @@ def gai(update,context):
 
 def mshgai(update,context):
     member_name = update.message.from_user.full_name
+    updatePlayers()
     if len(players) <= 0 :
         update.message.reply_text("Mfesh tashkela !")
     elif member_name not in players :
         update.message.reply_text("Esmak msh fel tashkela aslan !")
     else:
         players.remove(member_name)
+        updateFile()
         update.message.reply_text(playersPrint())
 
 def tashkela(update,context):
+    updatePlayers()
     update.message.reply_text(playersPrint())
 
 disp.add_handler(telegram.ext.CommandHandler("start",start))
@@ -85,4 +108,4 @@ disp.add_handler(telegram.ext.CommandHandler("tashkela",tashkela))
 
 
 updater.start_polling()
-
+updater.idle()

@@ -1,1 +1,1 @@
-web: python bot.py $PORT=5000
+web: python bot.py $PORT

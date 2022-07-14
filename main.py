@@ -144,5 +144,5 @@ disp.add_handler(telegram.ext.CommandHandler("tashkela",tashkela))
 disp.add_handler(telegram.ext.CommandHandler("add",add))
 disp.add_handler(telegram.ext.CommandHandler("remove",remove))
 
-updater.start_webhook(listen="0.0.0.0",port=5000,url_path='main',webhook_url='hagz-356213.oa.r.appspot.com/main')
+updater.start_webhook(listen="0.0.0.0",port=5000,url_path='main',webhook_url='https://hagzkorabot.herokuapp.com//main')
 updater.idle()

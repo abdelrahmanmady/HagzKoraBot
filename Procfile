@@ -1,1 +1,1 @@
-worker: python HagzKoraBot.py
+web: python bot.py $PORT=5000

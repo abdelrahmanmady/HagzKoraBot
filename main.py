@@ -1,4 +1,3 @@
-from email.mime import application
 import telegram.ext
 import os.path
 import psycopg2
